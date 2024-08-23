@@ -1,17 +1,20 @@
 package com.example.tasklist.repository;
 
 import com.example.tasklist.domain.task.Task;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Optional;
 
+@Mapper
 public interface TaskRepository {
 
     Optional<Task> findById(Long id);
 
     List<Task> findAllByUserId(Long userId);
 
-    void assignToUserById(Long userId, Long taskId);
+    void assignToUserById(@Param("taskId") Long userId, @Param("userId") Long taskId);
 
     void update(Task task);
 
